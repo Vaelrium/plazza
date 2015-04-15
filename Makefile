@@ -5,19 +5,19 @@
 ## Login <durand_u@epitech.net>
 ##
 ## Started on Wed Apr 15 09:48:29 2015 Rémi DURAND
-## Last update Wed Apr 15 10:46:41 2015 Kévin Colléter
+## Last update Wed Apr 15 10:56:05 2015 Rémi DURAND
 ##
 
-SRC	= plazza.cpp \
-	  Parser.cpp
+SRC	=	plazza.cpp	\
+		Parser.cpp	\
 
-CC	= g++
+CC	=	g++
 
-RM	= rm -f
+RM	=	rm -f
 
-OBJ	= $(SRC:.cpp=.o)
+OBJ	=	$(SRC:.cpp=.o)
 
-NAME	= plazza
+NAME	=	plazza
 
 CXXFLAGS	+= -W -Wall -Wextra -Werror
 
