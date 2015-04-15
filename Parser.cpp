@@ -5,7 +5,7 @@
 // Login   <collet_k@epitech.net>
 //
 // Started on  Tue Apr 14 11:49:29 2015 Kévin Colléter
-// Last update Wed Apr 15 10:16:38 2015 Kévin Colléter
+// Last update Wed Apr 15 10:50:24 2015 Kévin Colléter
 //
 
 #include "Parser.hpp"
@@ -59,6 +59,7 @@ int	Parser::Set_Value(char **av)
   str_cooks >> this->cooks;
   str_time << av[3];
   str_time >> this->time;
+  return (GOOD);
 }
 
 int	Parser::Read_Standard(void)
@@ -86,12 +87,13 @@ int	Parser::Read_Standard(void)
 
 int	Parser::Check_Command(void)
 {
+  Display();
   return (GOOD);
 }
 
 void	Parser::Display(void) const
 {
-  for (int i = 0; i < command.size(); i++)
+  for (unsigned int i = 0; i < command.size(); i++)
     std::cout << "- " << command[i] << std::endl;
 }
 
