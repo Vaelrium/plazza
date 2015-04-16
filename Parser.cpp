@@ -5,7 +5,7 @@
 // Login   <collet_k@epitech.net>
 //
 // Started on  Tue Apr 14 11:49:29 2015 Kévin Colléter
-// Last update Wed Apr 15 19:10:57 2015 Kévin Colléter
+// Last update Thu Apr 16 18:26:33 2015 Kévin Colléter
 //
 
 #include "Parser.hpp"
@@ -30,6 +30,30 @@ Parser::Parser(int ac, char **av)
   this->size[4] = "XXL";
 }
 
+Parser::Parser(const Parser &copy)
+{
+  this->argc = copy.get_argc();
+  this->argv = copy.get_argv();
+  this->multi = copy.get_multi();
+  this->time = copy.get_time();
+  this->cooks = copy.get_cooks();
+  this->command = copy.get_command();
+}
+
+Parser	&Parser::operator=(Parser const &other)
+{
+  if (this != &other)
+    {
+      this->argc = other.get_argc();
+      this->argv = other.get_argv();
+      this->multi = other.get_multi();
+      this->time = other.get_time();
+      this->cooks = other.get_cooks();
+      this->command = other.get_command();
+    }
+  return (*this);
+}
+
 Parser::~Parser()
 {}
 
@@ -43,18 +67,29 @@ int	Parser::Check_Standard(int ac, char **av)
 {
   if (ac != 4)
     return (Print_Error(USAGE));
-  for (int i = 1; i < 4; i++)
-    if (Is_Number(av[i]) == ERROR)
+  if (Is_Number(av[1], 1) == ERROR)
+    return (Print_Error(ONLY_NBR));
+  for (int i = 2; i < 4; i++)
+    if (Is_Number(av[i], 0) == ERROR)
       return (Print_Error(ONLY_NBR));
   Set_Value(av);
   return (GOOD);
 }
 
-int	Parser::Is_Number(char *nbr)
+int	Parser::Is_Number(char *nbr, int max)
 {
-  for (int i = 0; nbr[i] != '\0'; i++)
-    if (nbr[i] < '0' || nbr[i] > '9')
+  int	nbr_point = 0;
+
+  for (int i = 0; nbr[i] != '\0'; i++) {
+    if ((nbr[i] < '0' || nbr[i] > '9') && nbr[i] != '.')
       return (ERROR);
+    if (nbr[i] == '.')
+      ++nbr_point;
+  }
+  if (nbr_point > max) {
+    std::cerr << "Error '.' in " << nbr << std::endl;
+    return (ERROR);
+  }
   return (GOOD);
 }
 

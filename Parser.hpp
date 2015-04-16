@@ -5,7 +5,7 @@
 // Login   <collet_k@epitech.net>
 // 
 // Started on  Tue Apr 14 11:49:21 2015 Kévin Colléter
-// Last update Wed Apr 15 18:53:48 2015 Kévin Colléter
+// Last update Thu Apr 16 18:26:18 2015 Kévin Colléter
 //
 
 #ifndef PARSER_HPP_
@@ -14,7 +14,7 @@
 # define GOOD	0
 # define ERROR	1
 # define USAGE	"./plazza <multiplier cooking time> <number of cook> <time in milliseconds>"
-# define ONLY_NBR "Error only positiv numbers"
+# define ONLY_NBR "Error arguments"
 
 #include <iostream>
 #include <sstream>
@@ -26,9 +26,11 @@ class Parser
 public:
   Parser(int, char **);
   ~Parser();
+  Parser &operator=(Parser const &);
+  Parser(const Parser &);
   int	Check_Standard(int, char **);
   int	Print_Error(const char *) const;
-  int	Is_Number(char *);
+  int	Is_Number(char *, int);
   int	Set_Value(char **);
   int	Read_Standard(void);
   int	Check_Command(std::string &);
@@ -50,9 +52,9 @@ public:
 private:
   char	**argv;
   int	argc;
-  int	multi;
-  int	cooks;
-  int	time;
+  float	multi;
+  unsigned int	cooks;
+  unsigned int	time;
   const char	*type[4];
   const char	*size[5];
   std::vector<std::string> command;
