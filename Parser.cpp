@@ -5,7 +5,7 @@
 // Login   <collet_k@epitech.net>
 //
 // Started on  Tue Apr 14 11:49:29 2015 Kévin Colléter
-// Last update Fri Apr 17 10:58:22 2015 Kévin Colléter
+// Last update Fri Apr 17 15:38:43 2015 Kévin Colléter
 //
 
 #include "Parser.hpp"
@@ -149,7 +149,7 @@ int	Parser::Check_Command(std::string &token)
       (Check_Param2(param2) == ERROR) ||
       (Check_Param3(param3) == ERROR))
     return (ERROR);
-  this->command.push_back(param1 + " " + param2 + " " + param3);
+  Create_New_Command(param1, param2, param3);
   return (GOOD);
 }
 
@@ -198,6 +198,16 @@ int	Parser::Check_Param3(const std::string &token) const
 	return (Print_Error(X_NBR));
       }
   return (GOOD);
+}
+
+void	Parser::Create_New_Command(const std::string &param1, const std::string &param2, const std::string &param3)
+{
+  std::istringstream buffer(&param3[1]);
+  unsigned int counter;
+
+  buffer >> counter;
+  for (unsigned int i = 0; i != counter; i++)
+    this->command.push_back(param1 + " " + param2);
 }
 
 int	Parser::Nbr_Word(const std::string &token) const
