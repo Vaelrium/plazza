@@ -5,7 +5,7 @@
 // Login   <ganesha@epitech.net>
 //
 // Started on  Fri Apr 17 11:37:32 2015 Ambroise Coutarel
-// Last update Fri Apr 17 12:02:33 2015 Ambroise Coutarel
+// Last update Fri Apr 17 13:44:07 2015 Ambroise Coutarel
 //
 
 #ifndef MUTEX_HPP
@@ -22,9 +22,10 @@ private:
 public:
   my_mutex();
   ~my_mutex();
-  int	lock();
-  int	unlock();
-  int	trylock();
+  int			lock();
+  int			unlock();
+  int			trylock();
+  pthread_mutex_t	*getMutex();
 };
 
 #endif

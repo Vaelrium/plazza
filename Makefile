@@ -5,7 +5,7 @@
 ## Login <durand_u@epitech.net>
 ##
 ## Started on Wed Apr 15 09:48:29 2015 Rémi DURAND
-## Last update Fri Apr 17 14:18:22 2015 Rémi DURAND
+## Last update Fri Apr 17 15:33:36 2015 Ambroise Coutarel
 ##
 
 SRC	=	plazza.cpp	\
@@ -13,6 +13,7 @@ SRC	=	plazza.cpp	\
 		processes.cpp	\
 		thread.cpp	\
 		mutex.cpp	\
+		condvar.cpp	\
 		lobby.cpp
 
 CC	=	g++
