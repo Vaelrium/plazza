@@ -5,7 +5,7 @@
 // Login   <durand_u@epitech.net>
 // 
 // Started on  Wed Apr 15 10:56:13 2015 Rémi DURAND
-// Last update Fri Apr 17 14:27:00 2015 Rémi DURAND
+// Last update Fri Apr 17 15:55:00 2015 Rémi DURAND
 //
 
 #include "lobby.hpp"
@@ -15,7 +15,7 @@ void			lobby::create_new_kit()
   int			proc_in;
   int			proc_out;
   std::stringstream	ss;
-  ss << (++this->last_kit);
+  ss << (++this->max_kit);
   std::string		id(ss.str());
   pid_t			pid;
 
@@ -31,5 +31,35 @@ void			lobby::create_new_kit()
     {
       proc_kit	new_proc(this->pars->get_cooks(), this->pars->get_time(), this->pars->get_multi(), id);
       exit(1);
+    }
+}
+
+void				lobby::send_orders()
+{
+  std::vector<std::string>	commands;
+  unsigned int			v;
+  char				rep[2];
+
+  v = 0;
+  commands = this->pars->get_command();
+  while (v != commands.size())
+    {
+      write(this->npipes[this->last_kit].first, "places?", 7);
+      read(this->npipes[this->last_kit].second, rep, 2);
+      if (rep[0] == 'n' && rep[1] == 'o')
+	{
+	  this->create_new_kit();
+	  this->last_kit = this->max_kit;
+	}
+      else
+	{
+	  write(this->npipes[this->last_kit].first, commands[v].c_str(), commands[v].length());
+	  //delete command
+	  if (this->last_kit == this->max_kit)
+	    this->last_kit = 0;
+	  else
+	    ++this->last_kit;
+	  ++v;
+	}
     }
 }
