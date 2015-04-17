@@ -5,7 +5,7 @@
 // Login   <collet_k@epitech.net>
 // 
 // Started on  Tue Apr 14 11:49:21 2015 Kévin Colléter
-// Last update Fri Apr 17 15:38:44 2015 Kévin Colléter
+// Last update Fri Apr 17 16:18:32 2015 Kévin Colléter
 //
 
 #ifndef PARSER_HPP_
@@ -42,7 +42,9 @@ public:
   int	Check_Param2(const std::string &) const;
   int	Check_Param3(const std::string &) const;
   std::string	Set_Param(std::string &) const;
-  void	Create_New_Command(const std::string &, const std::string &, const std::string &);
+  void	Create_New_Command(const std::string &, const std::string &, const std::string &
+);
+  void	Delete_Command(void);
 
   /* Getter */
   int	get_argc(void) const;
