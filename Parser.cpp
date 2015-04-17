@@ -5,7 +5,7 @@
 // Login   <collet_k@epitech.net>
 //
 // Started on  Tue Apr 14 11:49:29 2015 Kévin Colléter
-// Last update Thu Apr 16 18:26:33 2015 Kévin Colléter
+// Last update Fri Apr 17 10:58:22 2015 Kévin Colléter
 //
 
 #include "Parser.hpp"
@@ -18,10 +18,10 @@ Parser::Parser(int ac, char **av)
   this->cooks = 0;
   this->time = 0;
 
-  this->type[0] = "Regina";
-  this->type[1] = "Margarita";
-  this->type[2] = "Americaine";
-  this->type[3] = "Fantasia";
+  this->type[0] = "regina";
+  this->type[1] = "margarita";
+  this->type[2] = "americaine";
+  this->type[3] = "fantasia";
 
   this->size[0] = "S";
   this->size[1] = "M";
@@ -63,24 +63,24 @@ int	Parser::Print_Error(const char *msg) const
   return (ERROR);
 }
 
-int	Parser::Check_Standard(int ac, char **av)
+int	Parser::Check_Standard(const int ac, char **av)
 {
   if (ac != 4)
     return (Print_Error(USAGE));
   if (Is_Number(av[1], 1) == ERROR)
     return (Print_Error(ONLY_NBR));
-  for (int i = 2; i < 4; i++)
+  for (unsigned int i = 2; i < 4; i++)
     if (Is_Number(av[i], 0) == ERROR)
       return (Print_Error(ONLY_NBR));
   Set_Value(av);
   return (GOOD);
 }
 
-int	Parser::Is_Number(char *nbr, int max)
+int	Parser::Is_Number(const char *nbr, const int max) const
 {
   int	nbr_point = 0;
 
-  for (int i = 0; nbr[i] != '\0'; i++) {
+  for (unsigned int i = 0; nbr[i] != '\0'; i++) {
     if ((nbr[i] < '0' || nbr[i] > '9') && nbr[i] != '.')
       return (ERROR);
     if (nbr[i] == '.')
@@ -144,6 +144,7 @@ int	Parser::Check_Command(std::string &token)
   param1 = Set_Param(token);
   param2 = Set_Param(token);
   param3 = Set_Param(token);
+  std::transform(param1.begin(), param1.end(), param1.begin(), ::tolower);
   if ((Check_Param1(param1) == ERROR) ||
       (Check_Param2(param2) == ERROR) ||
       (Check_Param3(param3) == ERROR))
@@ -152,7 +153,7 @@ int	Parser::Check_Command(std::string &token)
   return (GOOD);
 }
 
-std::string	Parser::Set_Param(std::string &token)
+std::string	Parser::Set_Param(std::string &token) const
 {
   int		i = 0;
   std::string	ret;
@@ -165,7 +166,7 @@ std::string	Parser::Set_Param(std::string &token)
   return (ret);
 }
 
-int	Parser::Check_Param1(std::string &token)
+int	Parser::Check_Param1(const std::string &token) const
 {
   for (int i = 0; i < 4; i++)
     if (token.compare(this->type[i]) == 0)
@@ -174,7 +175,7 @@ int	Parser::Check_Param1(std::string &token)
   return (Print_Error("] don't find"));
 }
 
-int	Parser::Check_Param2(std::string &token)
+int	Parser::Check_Param2(const std::string &token) const
 {
   for (int i = 0; i < 5; i++)
     if (token.compare(this->size[i]) == 0)
@@ -183,23 +184,23 @@ int	Parser::Check_Param2(std::string &token)
   return (Print_Error("] don't find"));
 }
 
-int	Parser::Check_Param3(std::string &token)
+int	Parser::Check_Param3(const std::string &token) const
 {
   if (token[0] != 'x')
     {
       std::cerr << "Bad usage [" << token << "]\nUsage : ";
-      return (Print_Error("x[numbers]"));
+      return (Print_Error(X_NBR));
     }
   for (unsigned int i = 1; i != token.size(); i++)
     if (token[i] < '0' || token[i] > '9')
       {
 	std::cerr << "Bad usage [" << token << "]\nUsage : ";
-	return (Print_Error("x[numbers]"));
+	return (Print_Error(X_NBR));
       }
   return (GOOD);
 }
 
-int	Parser::Nbr_Word(std::string &token)
+int	Parser::Nbr_Word(const std::string &token) const
 {
   int	i = 0;
   int	count = 0;
@@ -215,13 +216,6 @@ int	Parser::Nbr_Word(std::string &token)
       ++count;
     }
   return (count);
-}
-
-void	Parser::Display(void) const
-{
-  std::cout << "\033[1;31mEn cours :\033[00m" << std::endl;
-  for (unsigned int i = 0; i < command.size(); i++)
-    std::cout << "- " << command[i] << std::endl;
 }
 
 int	Parser::get_argc(void) const
