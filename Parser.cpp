@@ -5,7 +5,7 @@
 // Login   <collet_k@epitech.net>
 //
 // Started on  Tue Apr 14 11:49:29 2015 Kévin Colléter
-// Last update Fri Apr 17 16:21:05 2015 Kévin Colléter
+// Last update Fri Apr 17 16:26:43 2015 Kévin Colléter
 //
 
 #include "Parser.hpp"
@@ -212,7 +212,8 @@ void	Parser::Create_New_Command(const std::string &param1, const std::string &pa
 
 void	Parser::Delete_Command()
 {
-  this->command.erase(command.begin());
+  if (this->command.empty() != 0)
+    this->command.erase(command.begin());
 }
 
 int	Parser::Nbr_Word(const std::string &token) const
