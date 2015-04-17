@@ -5,11 +5,12 @@
 // Login   <durand_u@epitech.net>
 // 
 // Started on  Wed Apr 15 11:29:03 2015 Rémi DURAND
-// Last update Fri Apr 17 11:55:08 2015 Ambroise Coutarel
+// Last update Fri Apr 17 13:38:39 2015 Rémi DURAND
 //
 
 #ifndef _PRO_H_
 # define _PRO_H_
+
 # include "plazza.hpp"
 
 class		proc_kit

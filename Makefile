@@ -5,14 +5,15 @@
 ## Login <durand_u@epitech.net>
 ##
 ## Started on Wed Apr 15 09:48:29 2015 Rémi DURAND
-## Last update Fri Apr 17 12:49:53 2015 Ambroise Coutarel
+## Last update Fri Apr 17 14:18:22 2015 Rémi DURAND
 ##
 
 SRC	=	plazza.cpp	\
 		Parser.cpp	\
 		processes.cpp	\
 		thread.cpp	\
-		mutex.cpp
+		mutex.cpp	\
+		lobby.cpp
 
 CC	=	g++
 
