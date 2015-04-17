@@ -5,32 +5,32 @@
 // Login   <ganesha@epitech.net>
 //
 // Started on  Fri Apr 17 11:42:48 2015 Ambroise Coutarel
-// Last update Fri Apr 17 11:49:31 2015 Ambroise Coutarel
+// Last update Fri Apr 17 12:06:26 2015 Ambroise Coutarel
 //
 
 #include "mutex.hpp"
 
-mutex::mutex()
+my_mutex::my_mutex()
 {
-  mutex = PHTREAD_MUTEX_INITIALIZER;
+  pthread_mutex_init(&mutex, NULL);
 }
 
-mutex::~mutex()
+my_mutex::~my_mutex()
 {
-  pthread_mutex_destroy(mutex);
+  pthread_mutex_destroy(&mutex);
 }
 
-int	mutex::lock()
+int	my_mutex::lock()
 {
-  return (pthread_mutex_lock(mutex));
+  return (pthread_mutex_lock(&mutex));
 }
 
-int	mutex::unlock()
+int	my_mutex::unlock()
 {
- return (pthread_mutex_unlock(mutex));
+ return (pthread_mutex_unlock(&mutex));
 }
 
-int	mutex::trylock()
+int	my_mutex::trylock()
 {
-  return (pthread_mutex_trylock(mutex));
+  return (pthread_mutex_trylock(&mutex));
 }

@@ -5,11 +5,14 @@
 ## Login <durand_u@epitech.net>
 ##
 ## Started on Wed Apr 15 09:48:29 2015 Rémi DURAND
-## Last update Wed Apr 15 10:56:05 2015 Rémi DURAND
+## Last update Fri Apr 17 12:49:53 2015 Ambroise Coutarel
 ##
 
 SRC	=	plazza.cpp	\
 		Parser.cpp	\
+		processes.cpp	\
+		thread.cpp	\
+		mutex.cpp
 
 CC	=	g++
 
@@ -19,7 +22,7 @@ OBJ	=	$(SRC:.cpp=.o)
 
 NAME	=	plazza
 
-CXXFLAGS	+= -W -Wall -Wextra -Werror
+CXXFLAGS	+= -W -Wall -Wextra -Werror -lpthread
 
 all: $(NAME)
 
