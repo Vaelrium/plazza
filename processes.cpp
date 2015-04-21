@@ -5,7 +5,7 @@
 // Login   <ganesha@epitech.net>
 //
 // Started on  Thu Apr 16 16:49:36 2015 Ambroise Coutarel
-// Last update Fri Apr 17 16:24:35 2015 Ambroise Coutarel
+// Last update Tue Apr 21 09:53:36 2015 Ambroise Coutarel
 //
 
 #include "processes.hpp"
@@ -28,4 +28,6 @@ proc_kit::proc_kit(int nb_cooks, int cook_time, float multiplier, std::string &i
 proc_kit::~proc_kit()
 {
   cooks.clear();
+  close(_fd_in);
+  close(_fd_out);
 }

@@ -5,7 +5,7 @@
 // Login   <durand_u@epitech.net>
 // 
 // Started on  Wed Apr 15 10:56:13 2015 Rémi DURAND
-// Last update Fri Apr 17 15:55:00 2015 Rémi DURAND
+// Last update Fri Apr 17 16:40:37 2015 Rémi DURAND
 //
 
 #include "lobby.hpp"
@@ -44,7 +44,7 @@ void				lobby::send_orders()
   commands = this->pars->get_command();
   while (v != commands.size())
     {
-      write(this->npipes[this->last_kit].first, "places?", 7);
+      write(this->npipes[this->last_kit].first, "7777", 4);
       read(this->npipes[this->last_kit].second, rep, 2);
       if (rep[0] == 'n' && rep[1] == 'o')
 	{
@@ -54,7 +54,7 @@ void				lobby::send_orders()
       else
 	{
 	  write(this->npipes[this->last_kit].first, commands[v].c_str(), commands[v].length());
-	  //delete command
+	  this->pars->Delete_Command();
 	  if (this->last_kit == this->max_kit)
 	    this->last_kit = 0;
 	  else
