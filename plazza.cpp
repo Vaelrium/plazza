@@ -5,11 +5,24 @@
 // Login   <durand_u@epitech.net>
 //
 // Started on  Wed Apr 15 09:50:44 2015 Rémi DURAND
-// Last update Wed Apr 15 10:47:04 2015 Kévin Colléter
+// Last update Tue Apr 21 11:20:28 2015 Rémi DURAND
 //
 
-#include "Parser.hpp"
+#include "lobby.hpp"
 #include "plazza.hpp"
+
+int		algo_loop(Parser *parser)
+{
+  lobby		lobby(parser);
+
+  lobby.create_new_kit();
+  while (1)
+    {
+      if (parser->Read_Standard() == ERROR)
+	return (ERROR);
+      lobby.send_orders();
+    }
+}
 
 int		main(int ac, char **av)
 {
@@ -17,7 +30,6 @@ int		main(int ac, char **av)
 
   if (parser.Check_Standard(ac, av) == ERROR)
     return (ERROR);
-  if (parser.Read_Standard() == ERROR)
-    return (ERROR);
+  algo_loop(&parser);
   return (0);
 }

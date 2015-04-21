@@ -5,10 +5,42 @@
 // Login   <durand_u@epitech.net>
 // 
 // Started on  Wed Apr 15 10:56:13 2015 Rémi DURAND
-// Last update Fri Apr 17 16:40:37 2015 Rémi DURAND
+// Last update Tue Apr 21 11:10:36 2015 Rémi DURAND
 //
 
 #include "lobby.hpp"
+
+lobby::lobby(Parser *parser)
+{
+  pars = parser;
+  last_kit = 0;
+  max_kit = 1;
+}
+
+lobby::~lobby()
+{
+}
+
+
+lobby::lobby(const lobby& other)
+{
+  pars = other.getPars();
+  last_kit = other.getLast();
+  max_kit = other.getMax();
+  npipes = other.getNpipe();
+}
+
+lobby&			lobby::operator=(const lobby& other)
+{
+  if (this != &other)
+    {
+      pars = other.getPars();
+      last_kit = other.getLast();
+      max_kit = other.getMax();
+      npipes = other.getNpipe();
+    }
+  return (*this);
+}
 
 void			lobby::create_new_kit()
 {
@@ -47,19 +79,56 @@ void				lobby::send_orders()
       write(this->npipes[this->last_kit].first, "7777", 4);
       read(this->npipes[this->last_kit].second, rep, 2);
       if (rep[0] == 'n' && rep[1] == 'o')
-	{
-	  this->create_new_kit();
-	  this->last_kit = this->max_kit;
-	}
+	this->create_new_kit();
       else
 	{
 	  write(this->npipes[this->last_kit].first, commands[v].c_str(), commands[v].length());
 	  this->pars->Delete_Command();
-	  if (this->last_kit == this->max_kit)
-	    this->last_kit = 0;
-	  else
-	    ++this->last_kit;
 	  ++v;
 	}
+      if (this->last_kit == this->max_kit)
+	this->last_kit = 0;
+      else
+	++this->last_kit;
     }
+}
+
+Parser		*lobby::getPars() const
+{
+  return (pars);
+}
+
+int		lobby::getLast() const
+{
+  return (last_kit);
+}
+
+int		lobby::getMax() const
+{
+  return (max_kit);
+}
+
+pipetab		lobby::getNpipe() const
+{
+  return (npipes);
+}
+
+void		lobby::setPars(Parser *neww)
+{
+  pars = neww;
+}
+
+void		lobby::setLast(int neww)
+{
+  last_kit = neww;
+}
+
+void		lobby::setMax(int neww)
+{
+  max_kit = neww;
+}
+
+void		lobby::setNpipe(pipetab neww)
+{
+  npipes = neww;
 }

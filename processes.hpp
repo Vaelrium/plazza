@@ -5,7 +5,7 @@
 // Login   <durand_u@epitech.net>
 // 
 // Started on  Wed Apr 15 11:29:03 2015 Rémi DURAND
-// Last update Fri Apr 17 16:02:12 2015 Ambroise Coutarel
+// Last update Tue Apr 21 11:21:29 2015 Rémi DURAND
 //
 
 #ifndef _PRO_H_
@@ -18,6 +18,7 @@ class		proc_kit
 private:
   int			_nb_cooks;
   int			_cook_time;
+  int			_free_cooks;
   float			_multiplier;
   int			_fd_in;
   int			_fd_out;
