@@ -5,7 +5,7 @@
 // Login   <ganesha@epitech.net>
 //
 // Started on  Thu Apr 16 16:49:36 2015 Ambroise Coutarel
-// Last update Fri Apr 17 16:03:59 2015 Ambroise Coutarel
+// Last update Fri Apr 17 16:24:35 2015 Ambroise Coutarel
 //
 
 #include "processes.hpp"
@@ -13,6 +13,7 @@
 proc_kit::proc_kit(int nb_cooks, int cook_time, float multiplier, std::string &id)
 {
   _nb_cooks = nb_cooks;
+  _free_cooks = nb_cooks;
   _cook_time = cook_time;
   _multiplier = multiplier;
   _fd_in = open(id.c_str(), O_RDONLY);
