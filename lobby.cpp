@@ -5,7 +5,7 @@
 // Login   <durand_u@epitech.net>
 // 
 // Started on  Wed Apr 15 10:56:13 2015 Rémi DURAND
-// Last update Tue Apr 21 11:10:36 2015 Rémi DURAND
+// Last update Tue Apr 21 11:49:17 2015 Rémi DURAND
 //
 
 #include "lobby.hpp"
@@ -90,6 +90,24 @@ void				lobby::send_orders()
 	this->last_kit = 0;
       else
 	++this->last_kit;
+    }
+}
+
+void		lobby::display_order_ready()
+{
+  int		v;
+  char		rep[3];
+
+  v = 0;
+  while (v != this->max_kit)
+    {
+      write(this->npipes[v].first, "4444", 4);
+      read(this->npipes[this->last_kit].second, rep, 3);
+      if (rep[0] != 'n' && rep[1] != 'o')
+	{
+	  
+	}
+      ++v;
     }
 }
 

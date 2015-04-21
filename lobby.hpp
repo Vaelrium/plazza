@@ -5,7 +5,7 @@
 // Login   <durand_u@epitech.net>
 // 
 // Started on  Wed Apr 15 10:37:43 2015 Rémi DURAND
-// Last update Tue Apr 21 11:19:52 2015 Rémi DURAND
+// Last update Tue Apr 21 11:56:39 2015 Rémi DURAND
 //
 
 #ifndef _LOB_H_
@@ -16,6 +16,8 @@
 # include "processes.hpp"
 
 typedef std::vector<std::pair<int, int> > pipetab;
+
+char		g_pizzas[4][11] = {"Regina", "Margarita", "Americaine", "Fantasia"};
 
 class		lobby
 {
